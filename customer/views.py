@@ -5,8 +5,22 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from olx.models import UserProfile,User,Products,Category
+from django.views.decorators.cache import never_cache
+from django.utils.decorators import method_decorator
 
 # Create your views here.
+
+def signin_required(fn):
+    def wrapper(request,*args,**kw):
+        if not request.user.is_authenticated:
+            messages.error(request,"invalid session")
+            return redirect("signin")
+        else:
+            return fn(request,*args,**kw)
+    return wrapper
+
+decs=[signin_required,never_cache]                
+
 class SignUpView(CreateView):
     template_name="signup.html"
     form_class=RegistrationForm
@@ -66,6 +80,8 @@ class ProfileView(TemplateView):
             messages.error(self.request,"invalid profile")
             return render(request,"base.html",{"form":form})
 
+
+@method_decorator(decs,name="dispatch")
 class ProductAddView(CreateView):
     template_name="product-add.html"
     form_class=ProductForm
@@ -77,18 +93,23 @@ class ProductAddView(CreateView):
         messages.success(self.request,"New product is added")
         return super().form_valid(form)          
 
+
+@method_decorator(decs,name="dispatch")
 class HomeView(ListView):
-    categories=Category.objects.all()
     template_name="product-list.html"
-    context_object_name="product","category"
+    context_object_name="product"
     model=Products
 
+
+@method_decorator(decs,name="dispatch")
 class DetailView(DetailView):
     template_name="product-detail.html"
     context_object_name="product"
     pk_url_kwarg="id"
     model=Products
 
+
+@method_decorator(decs,name="dispatch")
 class ProductDeleteView(View):
     def get(self,request,*args,**kw):
         id=kw.get("id")
@@ -107,7 +128,7 @@ class OrderView(TemplateView):
 
 def sign_out(request,*args,**kw):
     logout(request)
-    return render("signin")  
+    return redirect("signin")  
           
 
 

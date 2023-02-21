@@ -14,63 +14,55 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{%static 'css/basestyle.css'%}" rel="stylesheet" />
+    <link rel="stylesheet" href="{%static 'css/navstyle.css'%}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
-    <!-- Navigation-->
+
+
+    <!-- Navigation-- -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="#!">
-                <img src="{%static 'images/OLX-Logo-PNG-768x768.jpg'%}" alt="" width="70px" height="70px">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="{%url 'profile'%}"><i class="fa-solid fa-user"></i>Profile</a></li>
-                    
-                    <li class="nav-item dropdown">
-                        <a class="nav-link active dropdown-toggle" id="navbarDropdown" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">Category</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#!">All Categories</a></li>
-                            <li>
-                                <hr class="dropdown-divider" />
-                            </li>
-                            <li><a class="dropdown-item" href="">Car</a></li>
-                            <li><a class="dropdown-item" href="#!">Furniture</a></li>
-                            <li><a class="dropdown-item" href="">Mobile Phone</a></li>
-                            <li><a class="dropdown-item" href="#!">Electronics</a></li>
-                            <li><a class="dropdown-item" href="">Fitness</a></li>
-                            <li><a class="dropdown-item" href="#!">Bikes</a></li>
-                        </ul>
-                    </li>
-                    
-                </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Location" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-                
-                <div class="mx-4">
-                    <a href="{%url 'product-create'%}" type="button" class="btn btn-warning rounded-pill fw-bolder">+ SELL</a>
-                </div>
-                <div>
-                    <a href="{%url 'signout'%}" type="button" class="btn btn-dark"><i class="fa-solid fa-power-off"></i>logout</a>
-                </div>
+        <a class="navbar-brand logo mx-2" href="#">
+            <img src="{%static 'images/OLX-Logo-PNG-768x768.jpg'%}" alt="" width="70px" height="70px">
+        </a>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav flex-2 ">
+    
+                <li class="input-group input-group-lg location me-3 flex-1">
+                    <input type="text" class="form-control" placeholder="Search location" />
+                    <div class="input-group-btn">
+                        <button class="fas fa-search ico rounded-1"></button>
+                    </div>
+                </li>
+    
+                <li class="input-group input-group-lg search flex-2 me-3">
+    
+                    <input type="text" class="form-control" placeholder="Find Cars,Mobile Phones and more..." />
+                    <div class="input-group-btn">
+                        <button class="fas fa-search ico rounded-1"></button>
+                    </div>
+                </li>
+            </ul>
+            
+
+            <div class="ms-3 mx-4">
+                <a href="{%url 'profile'%}" type="button" class="btn btn-outline-dark"><i class="fa-solid fa-user"></i>Profile</a>
+            </div>
+
+            <div class="mx-4">
+                <a href="{%url 'product-create'%}" type="button" class="btn btn-warning rounded-pill fw-bolder">+ SELL</a>
+            </div>
+            
+            <div class="ms-3 mx-4">
+                <a href="{%url 'signout'%}" type="button" class="btn btn-dark"><i class="fa-solid fa-power-off"></i>logout</a>
             </div>
         </div>
     </nav>
-    <div class="container">
-        <div class="row">
-            
-            </div>
-            <div class="col-"></div>
-        </div>
-    </div>
-    <!-- Header-->
+    <!-- Navigation-->
+    
+    <!-- olx header -->
     <header class="bg-dark py-5">
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-white">
